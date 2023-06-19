@@ -16,7 +16,7 @@
             <label for="id" class="">ลำดับ</label>
             </div>
         <div class="Re-Data">
-            <input type="text" value="<?php echo $k['id']; ?>" class="npru-input" name="id" required>
+            <input type="text" readonly value="<?php echo $k['id']; ?>" class="npru-input" name="id" required>
         </div>
 
 
