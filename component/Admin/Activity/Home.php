@@ -20,9 +20,8 @@
                 });
             })
         </script>";
-        header("refresh:10; url=../HomeAdmin.php");
-           
-        
+        header("refresh:10; url=../page/HomeAdmin.php");
+       
         }
     }
 ?>

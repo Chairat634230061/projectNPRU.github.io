@@ -20,7 +20,7 @@
                 });
             })
         </script>";
-        header("refresh:10; url=../Student.php");
+        header("refresh:10; url=../page/Student.php");
            
         
         }

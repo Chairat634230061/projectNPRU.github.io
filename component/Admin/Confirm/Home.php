@@ -20,7 +20,7 @@
                 });
             })
         </script>";
-        header("refresh:10; url=../ConfirmPage.php");
+        header("refresh:10; url=../page/ConfirmPage.php");
            
         
         }

@@ -1,7 +1,11 @@
+    <!-- SweetAlert2 -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- SweetAlert2 -->
 <?php 
+    require_once "server.php";
     session_start();
-    require_once "server.php" ;
-?>  
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +24,21 @@
     <?php include '../component/Admin/Sideber.php'?>
     <?php include '../component/Admin/Teacher/Add.php'?>
     <?php include '../component/Footer.php'?>
+
+
+
+    <!-- SweetAlert2 -->
+    <script>
+        <?php if(isset($_SESSION['error'])) : ?>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'error',
+                    text: '<?php echo $_SESSION['error']; ?>',
+                });
+            });
+            <?php unset($_SESSION['error']); ?>
+        <?php endif ?>
+    </script>
 
 <!-- FONT -->
     <style> @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Mitr:wght@300&family=Prompt:wght@300&display=swap');

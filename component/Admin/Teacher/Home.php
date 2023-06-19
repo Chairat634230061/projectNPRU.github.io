@@ -1,6 +1,9 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php 
+
+    require_once "server.php";
+    session_start();
      /* ---delete---  */ 
 
      if (isset($_GET['delete'])) {
@@ -20,7 +23,7 @@
                 });
             })
         </script>";
-        header("refresh:10; url=../Teacher.php");
+        header("refresh:10; url=../page/Teacher.php");
            
         
         }
