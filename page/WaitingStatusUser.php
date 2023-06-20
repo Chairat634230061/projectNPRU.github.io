@@ -1,10 +1,17 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php 
-    session_start();
-    require_once "server.php" ;
-?>  
+<?php
+session_start();
+require_once "server.php";
+
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['error'] = 'คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้าดังกล่าว';
+    header("location: ../Login/LoginUser.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

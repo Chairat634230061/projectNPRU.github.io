@@ -47,18 +47,10 @@
                 $row = $check_email->fetch(PDO::FETCH_ASSOC);
                 
                 if ($row['email'] == $email) {
-                    $_SESSION['warning'] = "มีอีเมลนี้อยู่ในระบบแล้ว";
-                    echo "<script>
-                        $(document).ready(function() {
-                            Swal.fire({
-                                title: 'มีอีเมลนี้อยู่ในระบบแล้ว',
-                                icon: 'error',
-                                timer: 5000,
-                               showConfimButton: false,
-                            });
-                        })
-                    </script>";
-                    header("refresh:2; url=../AddStudent.php");
+                    $_SESSION['error'] = "มีอีเมลนี้อยู่ในระบบแล้ว";
+                    header("location: ../AddStudent.php");
+                     exit();
+                    
                     
                 } else if (!isset($_SESSION['error'])) {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -72,31 +64,13 @@
                     $stmt->bindParam(":urole", $urole);
                     $stmt->execute();
                     $_SESSION['success'] = "สมัครสมาชิกเรียบร้อยแล้ว!";
-                    echo "<script>
-                    $(document).ready(function() {
-                        Swal.fire({
-                            title: 'เพิ่มสมาชิกเรียบร้อยแล้ว',
-                            icon: 'success',
-                            timer: 5000,
-                           showConfimButton: false,
-                        });
-                    })
-                </script>";
-                header("refresh:2; url=../AddStudent.php");
+                    header("location: ../Student.php");
+                    exit();
                     
                 } else {
                     $_SESSION['error'] = "มีบางอย่างผิดพลาด";
-                    echo "<script>
-                    $(document).ready(function() {
-                        Swal.fire({
-                            title: 'มีบางอย่างผิดพลาด',
-                            icon: 'error',
-                            timer: 5000,
-                           showConfimButton: false,
-                        });
-                    })
-                </script>";
-                header("refresh:2; url=../AddStudent.php");
+                    header("location: ../Student.php");
+                    exit();
                 }
 
             } catch(PDOException $e) {

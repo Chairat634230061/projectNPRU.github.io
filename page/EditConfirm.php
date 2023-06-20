@@ -1,6 +1,13 @@
 <?php 
-    session_start();
-    require_once "server.php" ;
+session_start();
+require_once "server.php";
+
+if (!isset($_SESSION['admin_login'])) {
+    $_SESSION['error'] = 'คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้าดังกล่าว';
+    header("location: ../Login/LoginAdmin.php");
+    exit();
+}
+
 ?>  
 <!DOCTYPE html>
 <html lang="en">

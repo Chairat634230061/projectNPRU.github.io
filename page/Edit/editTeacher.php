@@ -21,31 +21,13 @@ if (isset($_POST['update'])) {
         $sql->execute();
 
         if ($sql) {
-            $_SESSION['success'] = "";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'อัพเดทข้อมูลเรียบร้อย',
-                    icon: 'success',
-                    timer: 5000,
-                   showConfimButton: false,
-                });
-            })
-        </script>";
-        header("refresh:2; url=../Teacher.php");
+            $_SESSION['success'] = "อัพเดทข้อมูลเรียบร้อย";
+         header("location: ../Teacher.php");
+         exit();
         } else {
-            $_SESSION['error'] = "";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'อัพเดทข้อมูลไม่สำเร็จ',
-                    icon: 'error',
-                    timer: 5000,
-                   showConfimButton: false,
-                });
-            })
-        </script>";
-        header("refresh:2; url=../Teacher.php");
+            $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
+        header("location: ../Teacher.php");
+         exit();
         }
     }
 ?>

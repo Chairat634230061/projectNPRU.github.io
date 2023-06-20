@@ -9,19 +9,9 @@
         $deletestmt->execute();
 
         if ($deletestmt) {
-            $_SESSION['success'] = "Data has been deleted successfully";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'ลบข้อมูลนี้เรียบร้อย',
-                    icon: 'success',
-                    timer: 5000,
-
-                });
-            })
-        </script>";
-        header("refresh:10; url=../page/ConfirmPage.php");
-           
+            $_SESSION['success'] = "ลบข้อมูลนี้เรียบร้อย";
+        header("location: ../page/ConfirmPage.php");
+        exit();
         
         }
     }

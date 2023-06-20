@@ -34,35 +34,13 @@ if (isset($_POST['submituser'])) {
                 $sql->execute();
 
                 if ($sql) {
-                    $_SESSION['success'] = "Data has been inserted successfully";
-                    echo "<script>
-                        $(document).ready(function() {
-                            Swal.fire({
-                                title: 'เพิ่มข้อมูลเรียบร้อย',
-                                icon: 'success',
-                                timer: 5000,
-                                showConfirmButton: false,
-                            });
-                        });
-                        setTimeout(function() {
-                            window.location.href = '../ActivityUser.php';
-                        }, 2000);
-                    </script>";
+                    $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย";
+                    header("location: ../ActivityUser.php");
+                    exit();
                 } else {
-                    $_SESSION['error'] = "Data has not been inserted successfully";
-                    echo "<script>
-                        $(document).ready(function() {
-                            Swal.fire({
-                                title: 'เพิ่มข้อมูลไม่สำเร็จ',
-                                icon: 'error',
-                                timer: 5000,
-                                showConfirmButton: false,
-                            });
-                        });
-                        setTimeout(function() {
-                            window.location.href = '../ActivityUser.php';
-                        }, 2000);
-                    </script>";
+                    $_SESSION['error'] = "เพิ่มข้อมูลไม่สำเร็จ";
+                    header("location: ../ActivityUser.php");
+                    exit();
                 }
             }
         }
@@ -78,35 +56,13 @@ if (isset($_POST['submituser'])) {
         $sql->execute();
 
         if ($sql) {
-            $_SESSION['success'] = "Data has been inserted successfully";
-            echo "<script>
-                $(document).ready(function() {
-                    Swal.fire({
-                        title: 'เพิ่มข้อมูลเรียบร้อย',
-                        icon: 'success',
-                        timer: 5000,
-                        showConfirmButton: false,
-                    });
-                });
-                setTimeout(function() {
-                    window.location.href = '../ActivityUser.php';
-                }, 2000);
-            </script>";
-        } else {
-            $_SESSION['error'] = "Data has not been inserted successfully";
-            echo "<script>
-                $(document).ready(function() {
-                    Swal.fire({
-                        title: 'เพิ่มข้อมูลไม่สำเร็จ',
-                        icon: 'error',
-                        timer: 5000,
-                        showConfirmButton: false,
-                    });
-                });
-                setTimeout(function() {
-                    window.location.href = '../ActivityUser.php';
-                }, 2000);
-            </script>";
+            $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย";
+                header("location: ../ActivityUser.php");
+                exit();
+    } else {
+        $_SESSION['error'] = "เพิ่มข้อมูลไม่สำเร็จ";
+        header("location: ../ActivityUser.php");
+        exit();
         }
     }
 }

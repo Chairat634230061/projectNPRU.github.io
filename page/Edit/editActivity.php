@@ -9,39 +9,28 @@ if (isset($_POST['update'])) {
         $id = $_POST['id'];
         $name_activity = $_POST['name_activity'];
         $collect_hours = $_POST['collect_hours'];
+        $name_location = $_POST['name_location'];
+        $name_teacher = $_POST['name_teacher'];
 
-        $sql = $conn->prepare("UPDATE podo SET name_activity = :name_activity, collect_hours = :collect_hours WHERE id = :id");
+        $sql = $conn->prepare("UPDATE podo SET name_activity = :name_activity, collect_hours = :collect_hours, name_location = :name_location, name_teacher = :name_teacher WHERE id = :id");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":name_activity", $name_activity);
         $sql->bindParam(":collect_hours", $collect_hours);
+        $sql->bindParam(":name_location", $name_location);
+        $sql->bindParam(":name_teacher", $name_teacher);
         $sql->execute();
 
+
+        
         if ($sql) {
-            $_SESSION['success'] = "";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'อัพเดทข้อมูลเรียบร้อย',
-                    icon: 'success',
-                    timer: 5000,
-                   showConfimButton: false,
-                });
-            })
-        </script>";
-        header("refresh:2; url=../HomeAdmin.php");
+            $_SESSION['success'] = "อัพเดทข้อมูลเรียบร้อย";
+         header("location: ../HomeAdmin.php");
+         exit();
         } else {
-            $_SESSION['error'] = "";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'อัพเดทข้อมูลไม่สำเร็จ',
-                    icon: 'error',
-                    timer: 5000,
-                   showConfimButton: false,
-                });
-            })
-        </script>";
-        header("refresh:2; url=../HomeAdmin.php");
+            $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
+        header("location: ../HomeAdmin.php");
+         exit();
         }
     }
+
 ?>

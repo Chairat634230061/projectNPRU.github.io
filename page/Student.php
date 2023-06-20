@@ -1,3 +1,14 @@
+<?php 
+session_start();
+require_once "server.php";
+
+if (!isset($_SESSION['admin_login'])) {
+    $_SESSION['error'] = 'คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้าดังกล่าว';
+    header("location: ../Login/LoginAdmin.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +32,31 @@
 
 
 
+
+<!-- SweetAlert2 -->
+<script>
+        <?php if(isset($_SESSION['error'])) : ?>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'error',
+                    text: '<?php echo $_SESSION['error']; ?>',
+                });
+            });
+            <?php unset($_SESSION['error']); ?>
+        <?php endif ?>
+
+
+        <?php if(isset($_SESSION['success'])) : ?>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'success',
+                    text: '<?php echo $_SESSION['success']; ?>',
+                });
+            });
+            <?php unset($_SESSION['success']); ?>
+        <?php endif ?>
+</script>
+<!-- SweetAlert2 -->
 
 
     <!-- FONT -->

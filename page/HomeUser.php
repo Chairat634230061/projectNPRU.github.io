@@ -1,34 +1,17 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php 
-    session_start();
-    require_once "server.php" ;
+<?php
+session_start();
+require_once "server.php";
 
-    if (isset($_GET['delete'])) {
-        $delete_id = $_GET['delete'];
-        $deletestmt = $conn->query("DELETE FROM info_student WHERE id = $delete_id");
-        $deletestmt->execute();
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['error'] = 'คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้าดังกล่าว';
+    header("location: ../Login/LoginUser.php");
+    exit();
+}
 
-        if ($deletestmt) {
-            $_SESSION['success'] = "Data has been deleted successfully";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'ลบข้อมูลนี้เรียบร้อย',
-                    icon: 'success',
-                    timer: 5000,
-
-                });
-            })
-        </script>";
-        header("refresh:10; url=adminActivity.php");
-           
-        
-        }
-    }
-
-?>  
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +31,34 @@
     <?php include '../component/User/Sidebar.php'?>
     <?php include '../component/User/table.php'?>
     <?php include '../component/Footer.php'?>
+
+
+
+
+    <!-- SweetAlert2 -->
+<script>
+        <?php if(isset($_SESSION['error'])) : ?>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'error',
+                    text: '<?php echo $_SESSION['error']; ?>',
+                });
+            });
+            <?php unset($_SESSION['error']); ?>
+        <?php endif ?>
+
+
+        <?php if(isset($_SESSION['success'])) : ?>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'success',
+                    text: '<?php echo $_SESSION['success']; ?>',
+                });
+            });
+            <?php unset($_SESSION['success']); ?>
+        <?php endif ?>
+</script>
+<!-- SweetAlert2 -->
 
 
      <!-- FONT -->

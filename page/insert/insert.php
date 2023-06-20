@@ -23,31 +23,13 @@ if (isset($_POST['submit'])) {
     $sql->execute();
 
         if ($sql) {
-            $_SESSION['success'] = "Data has been inserted succesfully";
-            echo "<script>
-                $(document).ready(function() {
-                    Swal.fire({
-                        title: 'เพิ่มข้อมูลเรียบร้อย',
-                        icon: 'success',
-                        timer: 5000,
-                       showConfimButton: false,
-                    });
-                })
-            </script>";
-            header("refresh:2; url=../AddActivity.php");
+            $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย";
+                    header("location: ../AddActivity.php");
+                    exit();
         } else {
-            $_SESSION['error'] = "Data has not been inserted succesfully";
-            echo "<script>
-                $(document).ready(function() {
-                    Swal.fire({
-                        title: 'เพิ่มข้อมูลไม่สำเร็จ',
-                        icon: 'error',
-                        timer: 5000,
-                       showConfimButton: false,
-                    });
-                })
-            </script>";
-            header("refresh:2; url=../AddActivity.php");
+            $_SESSION['error'] = "เพิ่มข้อมูลไม่สำเร็จ";
+            header("location: ../AddActivity.php");
+             exit();
         }
     }
 

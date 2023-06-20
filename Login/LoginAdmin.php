@@ -57,11 +57,13 @@
             <?php unset($_SESSION['error']); ?>
         <?php endif ?>
     </script>
-
+<!-- SweetAlert2 -->
 
 <!-- FONT -->
 <style> 
     @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Mitr:wght@300&family=Prompt:wght@300&display=swap');
 </style>
+
+<!-- FONT -->
 </body>
 </html>

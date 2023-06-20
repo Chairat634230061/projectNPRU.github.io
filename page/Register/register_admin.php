@@ -60,19 +60,8 @@ if (isset($_POST['signupadmin'])) {
         $row = $check_email->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            $_SESSION['warning'] = "มีอีเมลนี้อยู่ในระบบแล้ว";
-            echo "
-            <script>
-                $(document).ready(function() {
-                    Swal.fire({
-                        title: 'มีอีเมลนี้อยู่ในระบบแล้ว',
-                        icon: 'error',
-                        timer: 5000,
-                        showConfirmButton: false,
-                    });
-                });
-            </script>";
-            header("refresh:2; url=../AddTeacher.php");
+            $_SESSION['error'] = "มีอีเมลนี้อยู่ในระบบแล้ว";
+            header("location: ../AddTeacher.php");
             exit();
         } else {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -86,18 +75,7 @@ if (isset($_POST['signupadmin'])) {
             $stmt->bindParam(":urole", $urole);
             $stmt->execute();
             $_SESSION['success'] = "สมัครสมาชิกเรียบร้อยแล้ว!";
-            echo "
-            <script>
-                $(document).ready(function() {
-                    Swal.fire({
-                        title: 'เพิ่มสมาชิกเรียบร้อยแล้ว',
-                        icon: 'success',
-                        timer: 5000,
-                        showConfirmButton: false,
-                    });
-                });
-            </script>";
-            header("refresh:2; url=../AddTeacher.php");
+            header("location: ../Teacher.php");
             exit();
         }
     } catch (PDOException $e) {

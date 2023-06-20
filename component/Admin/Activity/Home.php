@@ -1,6 +1,9 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php 
+
+    session_start();
+    require_once ("server.php");
      /* ---delete---  */ 
 
      if (isset($_GET['delete'])) {
@@ -9,18 +12,9 @@
         $deletestmt->execute();
 
         if ($deletestmt) {
-            $_SESSION['success'] = "Data has been deleted successfully";
-            echo "<script>
-            $(document).ready(function() {
-                Swal.fire({
-                    title: 'ลบข้อมูลนี้เรียบร้อย',
-                    icon: 'success',
-                    timer: 5000,
-
-                });
-            })
-        </script>";
-        header("refresh:10; url=../page/HomeAdmin.php");
+            $_SESSION['success'] = "ลบข้อมูลนี้เรียบร้อย";
+        header("location: ../page/HomeAdmin.php");
+        exit();
        
         }
     }
