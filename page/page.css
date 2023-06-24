@@ -255,11 +255,20 @@ select {
         width: auto;
         height: auto;
         position: relative;
+        font-size: 13px;
+    }
+
+    .content p {
+        font-size: 15px;
     }
 
     .table-container {
         height: auto;
-      
+    
+    }
+    .npru-button {
+        font-size: 14px;
+        padding: 7px 0;
     }
     
 
@@ -272,11 +281,13 @@ select {
         float: none;
         margin-top: 0;
         margin-left: 0;
+        padding: 1px;
     }
 }
 @media screen and (max-width: 768px) {
     .Add a {
         width: 30%;
+        padding: 7px 0;
     }
     
 }
@@ -312,7 +323,7 @@ select {
   
   /* เพิ่ม CSS สำหรับ Responsive */
 @media screen and (max-width: 768px) {
-    
+   
     .custom-table th,
     .custom-table td {
     
