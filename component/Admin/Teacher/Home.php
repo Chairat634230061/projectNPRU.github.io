@@ -3,7 +3,6 @@
 <?php 
 
     require_once "server.php";
-    session_start();
      /* ---delete---  */ 
 
      if (isset($_GET['delete'])) {

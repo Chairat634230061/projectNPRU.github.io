@@ -1,6 +1,7 @@
 <?php 
     session_start();
     require_once 'server.php';
+    
 
     if (isset($_POST['LoginAdmin'])) {
         $email = $_POST['email'];
