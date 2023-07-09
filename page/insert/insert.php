@@ -24,11 +24,11 @@ if (isset($_POST['submit'])) {
 
         if ($sql) {
             $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อย";
-                    header("location: ../AddActivity.php");
+                    header("location: ../HomeAdmin.php ");
                     exit();
         } else {
             $_SESSION['error'] = "เพิ่มข้อมูลไม่สำเร็จ";
-            header("location: ../AddActivity.php");
+            header("location: ../HomeAdmin.php");
              exit();
         }
     }
