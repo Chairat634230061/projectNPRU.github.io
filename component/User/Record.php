@@ -19,9 +19,37 @@
             
             <option value="<?php echo $k['name_activity']; ?>"><?php echo $k['name_activity']; ?></option>
           <?php } ?>
+          <option>เพิ่มด้วยตนเอง</option required>
         </select>
         </div>
 
+        <div class="Re-Data-laber">
+        <label for="activity" class="select-label">เลือกผู้รับรอง</label>
+      </div>
+      <div class="Re-Data">
+      <select  class="form-select" aria-label="Default select example" name="user_certifier"required>
+        <option selected>กรุณาเลือก</option required>
+        <?php       
+                    $stmt = $conn->prepare("SELECT * FROM certifier");
+                    $stmt->execute();
+                    $result = $stmt->fetchAll();
+                    foreach($result as $k) {
+        ?>
+            
+            <option value="<?php echo $k['firstname']; ?>"><?php echo $k['firstname']; ?></option>
+          <?php } ?>
+        </select>
+        </div>
+
+      
+       
+
+        <div class="Re-Data-laber">
+          <label for="activity2" class="">เพิ่มกิจกรรม</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="activity2">
+          </div>
         <div class="Re-Data-laber">
           <label for="studentID" class="">รหัสนักศึกษา</label>
         </div>

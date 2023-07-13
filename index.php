@@ -23,8 +23,9 @@
         <div class="left-box">
             <h1 class="npru_h1">เลือกเพื่อเข้าสู่ระบบ</h1>
             <!-- ส่วนซ้าย -->
-            <a href="Login/LoginUser.php" class="npru-button">เข้าสู่ระบบนักศึกษา</a>
+            <a href="Login/LoginUser.php" class="npru-button">เข้าสู่ระบบผู้กู้ยืม</a>
             <a href="Login/LoginAdmin.php" class="npru-button">เข้าสู่ระบบผู้ดูแล</a>
+            <a href="Login/LoginCertifier.php" class="npru-button">เข้าสู่ระบบผู้รับรอง</a>
         </div>
         
         <div class="right-box">

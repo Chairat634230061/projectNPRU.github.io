@@ -1,26 +1,28 @@
 <div class="content">
-    <p class="record-p">เพิ่มข้อมูลผู้กู้ยืม</p>
+    <p class="record-p">เพิ่มข้อมูลผู้รับรอง</p>
 
-    <form action ="../page/Register/register_user.php" method="post" >
+    <form action ="../page/Register/register_certifier.php" method="post" >
 
+       
         <div class="Re-Data-laber">
-          <label for="studentID" class="">รหัสนักศึกษา</label>
+          <label for="agency" class="">หน่วยงาน</label>
         </div>
         <div class="Re-Data">
-            <input type="text" class="npru-input" name="studentID" required>
+            <input type="text" class="npru-input" name="agency" required>
           </div>
         <div class="Re-Data-laber">
-          <label for="firstname" class="">ชื่อนักศึกษา</label>
+          <label for="firstname" class="">ชื่อผู้รับรอง</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" name="firstname" required>
           </div>
         <div class="Re-Data-laber">
-          <label for="lastname" class="">นามสกุลนักศึกษา</label>
+          <label for="lastname" class="">นามสกุล</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" name="lastname" required>
           </div>
+  
 
           <div class="Re-Data-laber">
             <label for="email" class="">Email</label>
@@ -42,7 +44,7 @@
           </div>
 
          <div class="Re-Data">
-             <button type="submituser" name ="submituser" class="npru-button" value="signup">เพิ่มข้อมูล</button>
+             <button type="submitcertifier" name ="submitcertifier" class="npru-button" value="signup">เพิ่มข้อมูล</button>
             </div>
         </form>
         

@@ -7,9 +7,11 @@ require_once "server.php";
 
 if (isset($_POST['submituser'])) {
     $user_activity = $_POST['user_activity'];
+    $activity2 = $_POST['activity2'];
     $studentID = $_POST['studentID'];
     $collect_hours = $_POST['collect_hours'];
     $name_message = $_POST['name_message'];
+    $user_certifier = $_POST['user_certifier'];
 
 
     // ตรวจสอบว่ามีไฟล์รูปภาพถูกส่งมาหรือไม่
@@ -24,13 +26,15 @@ if (isset($_POST['submituser'])) {
         if (in_array($fileActExt, $allow)) {
             if (move_uploaded_file($img['tmp_name'], $filePath)) {
                 // ต่อมาทำการเพิ่มข้อมูลลงในฐานข้อมูล
-                $sql = $conn->prepare("INSERT INTO info_student(user_activity, studentID, collect_hours, img, name_message) 
-                VALUES(:user_activity, :studentID, :collect_hours, :img, :name_message)");
+                $sql = $conn->prepare("INSERT INTO info_student(user_activity, studentID, collect_hours, img, name_message, activity2, user_certifier) 
+                VALUES(:user_activity, :studentID, :collect_hours, :img, :name_message, :activity2, :user_certifier)");
                 $sql->bindParam(":user_activity", $user_activity);
                 $sql->bindParam(":studentID", $studentID);
                 $sql->bindParam(":collect_hours", $collect_hours);
                 $sql->bindParam(":img", $fileNew);
                 $sql->bindParam(":name_message", $name_message);
+                $sql->bindParam(":activity2", $activity2);
+                $sql->bindParam(":user_certifier", $user_certifier);
                 $sql->execute();
 
                 if ($sql) {
@@ -47,12 +51,14 @@ if (isset($_POST['submituser'])) {
     } else {
         // กรณีไม่มีไฟล์รูปภาพถูกส่งมาหรือเกิดข้อผิดพลาดในการอัปโหลด
         // ทำการเพิ่มข้อมูลลงในฐานข้อมูลโดยไม่รวมฟิลด์ 'img'
-        $sql = $conn->prepare("INSERT INTO info_student(user_activity, studentID, collect_hours, name_message) 
-        VALUES(:user_activity, :studentID, :collect_hours, :name_message)");
+        $sql = $conn->prepare("INSERT INTO info_student(user_activity, studentID, collect_hours, name_message, activity2, user_certifier) 
+        VALUES(:user_activity, :studentID, :collect_hours, :name_message, :activity2, :user_certifier)");
         $sql->bindParam(":user_activity", $user_activity);
         $sql->bindParam(":studentID", $studentID);
         $sql->bindParam(":collect_hours", $collect_hours);
         $sql->bindParam(":name_message", $name_message);
+        $sql->bindParam(":activity2", $activity2);
+        $sql->bindParam(":user_certifier", $user_certifier);
         $sql->execute();
 
         if ($sql) {

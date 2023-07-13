@@ -1,11 +1,11 @@
 <div class="content">
-    <p class="record-p">เพิ่มข้อมูลผู้กู้ยืม</p>
+    <p class="record-p">เพิ่มข้อมูลนักศึกษา</p>
 
-    <form action ="../page/Edit/editStudent.php" method="post" >
+    <form action ="../page/Edit/editCertifier.php" method="post" >
 
     <?php if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $stmt = $conn->prepare("SELECT * FROM studentuser WHERE id = $id");
+            $stmt = $conn->prepare("SELECT * FROM certifier WHERE id = $id");
             $stmt->execute();
             $result = $stmt->fetchAll();
             foreach($result as $k) {
@@ -20,19 +20,19 @@
         </div>
 
         <div class="Re-Data-laber">
-          <label for="studentID" class="">รหัสนักศึกษา</label>
+          <label for="agency" class="">หน่วยงาน</label>
         </div>
         <div class="Re-Data">
-            <input type="text" class="npru-input" value="<?php echo $k['studentID']; ?>" name="studentID" required>
+            <input type="text" class="npru-input" value="<?php echo $k['agency']; ?>" name="agency" required>
           </div>
         <div class="Re-Data-laber">
-          <label for="firstname" class="">ชื่อนักศึกษา</label>
+          <label for="firstname" class="">ชื่อผู้รับรอง</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['firstname']; ?>" name="firstname" required>
           </div>
         <div class="Re-Data-laber">
-          <label for="lastname" class="">นามสกุลนักศึกษา</label>
+          <label for="lastname" class="">นามสกุล</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['lastname']; ?>" name="lastname" required>

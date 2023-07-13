@@ -11,15 +11,15 @@ if (isset($_POST['submit'])) {
     $name_activity = $_POST['name_activity'];
     $collect_hours = $_POST['collect_hours'];
     $name_location = $_POST['name_location'];
-    $name_teacher = $_POST['name_teacher'];
+    $user_certifier = $_POST['user_certifier'];
    
 
-    $sql = $conn->prepare("INSERT INTO podo(name_activity, collect_hours, name_location, name_teacher) 
-    VALUES(:name_activity, :collect_hours, :name_location, :name_teacher)");
+    $sql = $conn->prepare("INSERT INTO podo(name_activity, collect_hours, name_location, user_certifier) 
+    VALUES(:name_activity, :collect_hours, :name_location, :user_certifier)");
     $sql->bindParam(":name_activity", $name_activity);
     $sql->bindParam(":collect_hours", $collect_hours);
     $sql->bindParam(":name_location", $name_location);
-    $sql->bindParam(":name_teacher", $name_teacher);
+    $sql->bindParam(":user_certifier", $user_certifier);
     $sql->execute();
 
         if ($sql) {

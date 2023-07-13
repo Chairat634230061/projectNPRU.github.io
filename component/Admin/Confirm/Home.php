@@ -62,11 +62,14 @@ if (isset($_GET['confirm_delete'])) {
         <th>ลำดับ</th>
             <th>ชื่อกิจกรรม</th>
             <th>รหัสนักศึกษา</th>
+            <th>ชื่อผู้รับรอง</th>
             <th>จำนวนชั่วโมง</th>
             <th>วันที่บันทึกมา</th>
             <th>รูปภาพ</th>
             <th>รายละเอียด</th>
+            <th>การรับรอง</th>
             <th>สถานนะ</th>
+            <th>อนุมัติข้อมูล</th>
             <th>ลบข้อมูล</th>
         </tr>
         <?php
@@ -80,21 +83,23 @@ if (isset($_GET['confirm_delete'])) {
 
             <tr>
             <td>
-            <div class="icon-wrapper">
-                <a href="EditConfirm.php?id=<?= $k['id']; ?>"> <i class="fas fa-edit"></i></a>
                 <?php echo $k['id']; ?> 
-            </div>
             </td>
             <td><?php echo $k['user_activity']; ?></td>
             <td><?php echo $k['studentID']; ?></td>
+            <td><?php echo $k['user_certifier']; ?></td>
             <td><?php echo $k['collect_hours']; ?></td>
             <td><?php echo $k['name_time']; ?></td>
             <td width="150px" ><img class="rounded" width="100%"  src="../page/uploadsIMG/<?php echo $k['img']; ?>" alt=""></td>
             <td><?php echo $k['name_message']; ?></td>
+            <td><?php echo $k['user_confirm']; ?></td>
             <td><?php echo $k['user_status']; ?></td>
             <td>
-            <a data-id="<?= $k['id']; ?>" href="?delete=<?= $k['id']; ?>" > <i class="fas fa-trash fa-lg"></i>
-            </a>
+            <a href="EditConfirm.php?id=<?= $k['id']; ?>" class='td-a'>ยืนยัน</a>
+        </td>
+            </td>
+            <td>
+            <a data-id="<?= $k['id']; ?>" href="?delete=<?= $k['id']; ?>"  class='td-a'>ลบ</a>  
             </td>
             </tr>
             <?php } ?>
