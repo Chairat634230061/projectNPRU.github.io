@@ -54,18 +54,20 @@ if (isset($_POST['signupadmin'])) {
 
     try {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $check_email = $conn->prepare("SELECT email FROM user WHERE email = :email");
+        $check_email = $conn->prepare("SELECT email FROM user_admin WHERE email = :email");
         $check_email->bindParam(":email", $email);
         $check_email->execute();
-        $row = $check_email->fetch(PDO::FETCH_ASSOC);
+        $row = $check_email->fetch(PDO::FETCH_ASSOC);       //รวจสอบว่ามีอีเมลที่ถูกใช้ลงทะเบียนอยู่แล้วในฐานข้อมูลหรือไม่ โดยทำการเชื่อมต่อกับฐานข้อมูลและเซตแอตทริบิวต์ของการเชื่อมต่อเพื่อให้เกิดการแจ้งเตือนเมื่อเกิดข้อผิดพลาด 
 
         if ($row) {
             $_SESSION['error'] = "มีอีเมลนี้อยู่ในระบบแล้ว";
             header("location: ../AddTeacher.php");
             exit();
         } else {
+            // สร้างรหัสผ่านที่ถูกเข้ารหัสด้วย bcrypt
+            //การเข้ารหัส รหัสผ่านเป็นกระบวนการที่จะแปลงข้อมูลรหัสผ่านที่ผู้ใช้ป้อนเป็นสตริงรหัสที่ไม่สามารถถอดรหัสกลับมาเป็นรหัสผ่านเดิมได้. นี่เป็นวิธีที่ช่วยให้รหัสผ่านเก็บไว้อย่างปลอดภัยในฐานข้อมูลหรือระบบอื่น ๆ โดยไม่ต้องเก็บเป็นรหัสผ่านแบบเปิดเผย.
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("INSERT INTO user(number, firstname, lastname, email, password, urole) 
+            $stmt = $conn->prepare("INSERT INTO user_admin(number, firstname, lastname, email, password, urole) 
                                         VALUES(:number, :firstname, :lastname, :email, :password, :urole)");
             $stmt->bindParam(":number", $number);
             $stmt->bindParam(":firstname", $firstname);

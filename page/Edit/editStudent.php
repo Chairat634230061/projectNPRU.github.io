@@ -11,12 +11,14 @@ if (isset($_POST['update'])) {
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
+        $studygroup = $_POST['studygroup'];
 
-        $sql = $conn->prepare("UPDATE studentuser SET studentID = :studentID, firstname = :firstname, lastname = :lastname, email = :email WHERE id = :id");
+        $sql = $conn->prepare("UPDATE studentuser SET studentID = :studentID, firstname = :firstname,  studygroup = :studygroup, lastname = :lastname, email = :email WHERE id = :id");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":studentID", $studentID);
         $sql->bindParam(":firstname", $firstname);
         $sql->bindParam(":lastname", $lastname);
+        $sql->bindParam(":studygroup", $studygroup);
         $sql->bindParam(":email", $email);
         $sql->execute();
         

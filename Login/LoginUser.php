@@ -27,11 +27,15 @@
 <body>
     <div class="container">
         <div class="left-box">
-            <h1 class="npru_h1">เข้าสู่ระบบนักศึกษา</h1>
+            <h1 class="npru_h1">เข้าสู่ระบบผู้กู้ยืม</h1>
             <!-- ส่วนซ้าย -->
             <form action="db-user.php" method="post">
                 <div class="user-box">
-                    <label for="email" >อีเมลนักศึกษา</label>
+                    <label for="studentID" >รหัสนักศึกษา</label>
+                    <input type="text" name='studentID'class="npru-input">
+            </div>
+                <div class="user-box">
+                    <label for="email" >อีเมลผู้กู้ยืม</label>
                     <input type="text" name='email' class="npru-input">
                 </div>
                 <div class="user-box">
@@ -39,7 +43,7 @@
                     <input type="password" name='password'class="npru-input">
             </div>
             <div class="user-box">
-                <button type="submit" name='LoginUser' class="npru-button">เข้าสู่ระบบนักศึกษา</button>
+                <button type="submit" name='LoginUser' class="npru-button">เข้าสู่ระบบผู้กู้ยืม</button>
             </div>
         </form>
     </div>

@@ -62,8 +62,8 @@ if (isset($_GET['confirm_delete'])) {
                 <th>รหัสนักศึกษา</th>
                 <th>ชื่อจริงนักศึกษา</th>
                 <th>นามสกุลนักศึกษา</th>
+                <th>หมู่เรียน</th>
                 <th>Email</th>
-                <th>แก้ไข</th>
                 <th>ลบข้อมูล</th>
             </tr>
             <?php
@@ -82,10 +82,10 @@ if (isset($_GET['confirm_delete'])) {
                         <?php echo $k['id']; ?> 
                     </div>
                     </td>
-                    <td><?php echo $k['id']; ?></td>
                     <td><?php echo $k['studentID']; ?></td>
                     <td><?php echo $k['firstname']; ?></td>
                     <td><?php echo $k['lastname']; ?></td>
+                    <td><?php echo $k['studygroup']; ?></td>
                     <td><?php echo $k['email']; ?></td>
                     <td>
                     <a data-id="<?= $k['id']; ?>" href="?delete=<?= $k['id']; ?>" > <i class="fas fa-trash fa-lg"></i>

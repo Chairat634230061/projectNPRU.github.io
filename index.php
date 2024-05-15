@@ -25,7 +25,7 @@
             <!-- ส่วนซ้าย -->
             <a href="Login/LoginUser.php" class="npru-button">เข้าสู่ระบบผู้กู้ยืม</a>
             <a href="Login/LoginAdmin.php" class="npru-button">เข้าสู่ระบบผู้ดูแล</a>
-            <a href="Login/LoginCertifier.php" class="npru-button">เข้าสู่ระบบผู้รับรอง</a>
+    
         </div>
         
         <div class="right-box">

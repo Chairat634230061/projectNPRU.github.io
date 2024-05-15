@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_login'])) {
     <?php include '../component/NavberAdmin.php'?>
     <?php include '../component/Admin/Sideber.php'?>
     <?php include '../component/Admin/Confirm/Home.php'?>
-    <?php include '../component/Footer.php'?>
+    <?php include '../component/FooterAdmin.php'?>
 
 
 <!-- SweetAlert2 -->

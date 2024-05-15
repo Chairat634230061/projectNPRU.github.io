@@ -26,7 +26,7 @@ if (!isset($_SESSION['admin_login'])) {
     <?php include '../component/NavberAdmin.php'?>
     <?php include '../component/Admin/Sideber.php'?>
     <?php include '../component/Admin/Teacher/edit.php'?>
-    <?php include '../component/Footer.php'?>
+    <?php include '../component/FooterAdmin.php'?>
 
 <!-- FONT -->
     <style> @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Mitr:wght@300&family=Prompt:wght@300&display=swap');

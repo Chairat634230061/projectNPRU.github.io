@@ -31,7 +31,7 @@ if (!isset($_SESSION['admin_login'])) {
     <?php include '../component/NavberAdmin.php'?>
     <?php include '../component/Admin/Sideber.php'?>
     <?php include '../component/Admin/Activity/Add.php'?>
-    <?php include '../component/Footer.php'?>
+    <?php include '../component/FooterAdmin.php'?>
 
 
 

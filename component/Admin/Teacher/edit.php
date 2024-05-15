@@ -1,11 +1,11 @@
 <!-- edit -->
 <div class="content">
-    <p class="record-p">เพิ่มข้อมูลผู้ดูแล</p>
+    <p class="record-p">แก้ไขข้อมูลผู้ดูแล</p>
 
 <form action="../page/Edit/editTeacher.php" method="post">
         <?php if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $stmt = $conn->prepare("SELECT * FROM user WHERE id = $id");
+            $stmt = $conn->prepare("SELECT * FROM user_admin WHERE id = $id");
             $stmt->execute();
             $result = $stmt->fetchAll();
             foreach ($result as $k) {

@@ -5,7 +5,7 @@
     <form action="../page/Edit/editActivity.php" method="post">
         <?php if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $stmt = $conn->prepare("SELECT * FROM podo WHERE id = $id");
+            $stmt = $conn->prepare("SELECT * FROM add_activity WHERE id = $id");
             $stmt->execute();
             $result = $stmt->fetchAll();
             foreach ($result as $k) {
@@ -42,12 +42,28 @@
                 required>
         </div>
         <div class="Re-Data-laber">
-            <label for="name_teacher" class="">ผู้ดูแล</label>
+            <label for="activity_date1" class="">เริ่มต้น</label>
         </div>
         <div class="Re-Data">
-            <input type="text" class="npru-input" name="name_teacher" value="<?php echo $k['name_teacher']; ?>"
+            <input type="text" class="npru-input" name="activity_date1" value="<?php echo $k['activity_date1']; ?>"
                 required>
         </div>
+        <div class="Re-Data-laber">
+            <label for="activity_date2" class="">สิ้นสุด</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="activity_date2" value="<?php echo $k['activity_date2']; ?>"
+                required>
+        </div>
+       
+        <div class="Re-Data-laber">
+            <label for="participant_limit" class="">จำกัดจำนวน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="participant_limit" value="<?php echo $k['participant_limit']; ?>"
+                required>
+        </div>
+       
 
         <div class="Re-Data">
         <button type="submit" name="update" class="npru-button">อัพเดทข้อมูล</button>

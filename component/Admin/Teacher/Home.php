@@ -10,7 +10,7 @@ if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
 
     // ตรวจสอบก่อนว่ามีข้อมูลที่ต้องการลบหรือไม่
-    $checkstmt = $conn->prepare("SELECT * FROM user WHERE id = :id");
+    $checkstmt = $conn->prepare("SELECT * FROM user_admin WHERE id = :id");
     $checkstmt->bindParam(':id', $delete_id);
     $checkstmt->execute();
     $rowCount = $checkstmt->rowCount();
@@ -41,7 +41,7 @@ if (isset($_GET['delete'])) {
 /* ---confirm delete--- */
 if (isset($_GET['confirm_delete'])) {
     $confirm_delete_id = $_GET['confirm_delete'];
-    $deletestmt = $conn->prepare("DELETE FROM user WHERE id = :id");
+    $deletestmt = $conn->prepare("DELETE FROM user_admin WHERE id = :id");
     $deletestmt->bindParam(':id', $confirm_delete_id);
     $deletestmt->execute();
 
@@ -61,6 +61,7 @@ if (isset($_GET['confirm_delete'])) {
         <tr>
         <th>ลำดับ</th>
         <th>ชื่อผู้ดูแล</th>
+        <th>นามสกุลผู้ดูแล</th>
         <th>เบอร์ติดต่อ</th>
         <th>Emil</th>
         <th>ลบข้อมูล</th>
@@ -68,7 +69,7 @@ if (isset($_GET['confirm_delete'])) {
         <?php
         //คิวรี่ข้อมูลมาแสดงในตาราง
         require_once 'server.php';
-        $stmt = $conn->prepare("SELECT * FROM user");
+        $stmt = $conn->prepare("SELECT * FROM user_admin");
         $stmt->execute();
         $result = $stmt->fetchAll();
         foreach($result as $k) {
@@ -83,6 +84,7 @@ if (isset($_GET['confirm_delete'])) {
         </td>
 
         <td><?php echo $k['firstname']; ?></td>
+        <td><?php echo $k['lastname']; ?></td>
         <td><?php echo $k['number']; ?></td>
         <td><?php echo $k['email']; ?></td>
 

@@ -22,24 +22,25 @@
           <div class="Re-Data">
             <input type="text" class="npru-input" name="name_location" required>
           </div>
-
           <div class="Re-Data-laber">
-        <label for="activity" class="select-label">เลือกผู้รับรอง</label>
-      </div>
-      <div class="Re-Data">
-      <select  class="form-select" aria-label="Default select example" name="user_certifier"required>
-        <option selected>กรุณาเลือก</option required>
-        <?php       
-                    $stmt = $conn->prepare("SELECT * FROM certifier");
-                    $stmt->execute();
-                    $result = $stmt->fetchAll();
-                    foreach($result as $k) {
-        ?>
-            
-            <option value="<?php echo $k['firstname']; ?>"><?php echo $k['firstname']; ?></option>
-          <?php } ?>
-        </select>
+         <label for="activity_date1" class="">เริ่มต้น</label>
+          </div>
+          <div class="Re-Data">
+              <input type="date" class="npru-input" name="activity_date1" required>
+          </div>
+          <div class="Re-Data-laber">
+              <label for="activity_date2" class="">สิ้นสุด</label>
+          </div>
+          <div class="Re-Data">
+              <input type="date" class="npru-input" name="activity_date2" required>
+          </div>
+          <div class="Re-Data-laber">
+          <label for="participant_limit" class="">จำกัดจำนวน</label>
         </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="participant_limit" required>
+          </div>
+          
          <div class="Re-Data">
              <button type="submit" name ="submit" class="npru-button" >เพิ่มข้อมูล</button>
             </div>

@@ -1,5 +1,5 @@
 <div class="content">
-    <p class="record-p">เพิ่มข้อมูลผู้กู้ยืม</p>
+    <p class="record-p">แก้ไขข้อมูลผู้กู้ยืม</p>
 
     <form action ="../page/Edit/editStudent.php" method="post" >
 
@@ -36,6 +36,12 @@
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['lastname']; ?>" name="lastname" required>
+          </div>
+        <div class="Re-Data-laber">
+          <label for="lastname" class="">หมู่เรียน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" value="<?php echo $k['studygroup']; ?>" name="studygroup" required>
           </div>
 
           <div class="Re-Data-laber">

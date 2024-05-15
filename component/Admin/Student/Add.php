@@ -21,6 +21,12 @@
         <div class="Re-Data">
             <input type="text" class="npru-input" name="lastname" required>
           </div>
+        <div class="Re-Data-laber">
+          <label for="lastname" class="">หมู่เรียน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="studygroup" required>
+          </div>
 
           <div class="Re-Data-laber">
             <label for="email" class="">Email</label>

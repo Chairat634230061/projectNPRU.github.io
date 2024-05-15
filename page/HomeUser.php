@@ -11,6 +11,25 @@ if (!isset($_SESSION['user_login'])) {
     exit();
 }
 
+// ตรวจสอบ studentID ของผู้ใช้ที่เข้าสู่ระบบ
+$studentID = $_SESSION['studentID'];
+
+// ดำเนินการตาม studentID หรือผู้ใช้ที่มีล็อกอิน
+$stmt = $conn->prepare("SELECT * FROM studentuser WHERE studentID = :studentID");
+$stmt->bindParam(':studentID', $studentID);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// ตรวจสอบ session ว่ามีการล็อกอินหรือไม่
+if (!isset($_SESSION['user_login'])) {
+    $_SESSION['error'] = 'คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้าดังกล่าว';
+    header("location: ../Login/LoginUser.php");
+    exit();
+}
+
+// ตรวจสอบ studentID ของผู้ใช้ที่เข้าสู่ระบบ
+$studentID = $_SESSION['studentID'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

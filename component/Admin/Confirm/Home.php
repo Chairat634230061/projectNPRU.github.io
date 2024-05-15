@@ -1,6 +1,23 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script>
+    $(document).ready(function() {
+        // เพิ่มการตรวจสอบการคลิกที่รูปภาพ
+        $('.rounded').click(function() {
+            var imgUrl = $(this).attr('src'); // รับ URL ของรูปภาพที่คลิก
+            var imgTag = '<img src="' + imgUrl + '" style="max-width: 100%; max-height: 100%;">'; // สร้างแท็ก <img> ใหม่โดยกำหนดขนาดสูงสุด
+            Swal.fire({
+                html: imgTag, // แทรกรูปภาพใน SweetAlert2
+                showCloseButton: true, // แสดงปุ่มปิด
+                showConfirmButton: false, // ซ่อนปุ่มยืนยัน
+                customClass: {
+                    popup: 'swal2-image-popup', // กำหนดคลาส CSS สำหรับการแสดงรูปภาพใน SweetAlert2
+                },
+            });
+        });
+    });
+</script>
 <?php
 require_once "server.php";
 
@@ -59,18 +76,17 @@ if (isset($_GET['confirm_delete'])) {
 <div class="table-container">
         <table class="custom-table">
         <tr>
-        <th>ลำดับ</th>
-            <th>ชื่อกิจกรรม</th>
+            <th>ชื่อ</th>
+            <th>นามสกุล</th>
             <th>รหัสนักศึกษา</th>
-            <th>ชื่อผู้รับรอง</th>
+            <th>ชื่อกิจกรรม</th>
             <th>จำนวนชั่วโมง</th>
             <th>วันที่บันทึกมา</th>
             <th>รูปภาพ</th>
+            <th>รูปเอกสารรับรอง</th>
             <th>รายละเอียด</th>
-            <th>การรับรอง</th>
-            <th>สถานนะ</th>
             <th>อนุมัติข้อมูล</th>
-            <th>ลบข้อมูล</th>
+  
         </tr>
         <?php
             //คิวรี่ข้อมูลมาแสดงในตาราง
@@ -82,25 +98,20 @@ if (isset($_GET['confirm_delete'])) {
             ?>
 
             <tr>
-            <td>
-                <?php echo $k['id']; ?> 
-            </td>
-            <td><?php echo $k['user_activity']; ?></td>
-            <td><?php echo $k['studentID']; ?></td>
-            <td><?php echo $k['user_certifier']; ?></td>
+                <td><?php echo $k['firstname']; ?></td>
+                <td><?php echo $k['lastname']; ?></td>
+                <td><?php echo $k['studentID']; ?></td>
+                <td><?php echo $k['activity2']; ?></td>
             <td><?php echo $k['collect_hours']; ?></td>
             <td><?php echo $k['name_time']; ?></td>
             <td width="150px" ><img class="rounded" width="100%"  src="../page/uploadsIMG/<?php echo $k['img']; ?>" alt=""></td>
+            <td width="150px" ><img class="rounded" width="100%"  src="../page/imgConfirm/<?php echo $k['img_confirm']; ?>" alt=""></td>
             <td><?php echo $k['name_message']; ?></td>
-            <td><?php echo $k['user_confirm']; ?></td>
-            <td><?php echo $k['user_status']; ?></td>
             <td>
             <a href="EditConfirm.php?id=<?= $k['id']; ?>" class='td-a'>ยืนยัน</a>
         </td>
             </td>
-            <td>
-            <a data-id="<?= $k['id']; ?>" href="?delete=<?= $k['id']; ?>"  class='td-a'>ลบ</a>  
-            </td>
+         
             </tr>
             <?php } ?>
 

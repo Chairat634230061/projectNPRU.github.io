@@ -12,13 +12,19 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $c_password = $_POST['c_password'];
-        $urole = 'user';
+        $studygroup = $_POST['studygroup'];
+        
+        // สร้างค่า urole จากตัวแปร studentID เพื่อให้แตกต่างกัน
+        $urole = 'user' . $studentID;
 
         if (empty($firstname)) {
             $_SESSION['error'] = 'กรุณากรอกชื่อ';
             header("location: ../AddStudent.php");
         } else if (empty($lastname)) {
             $_SESSION['error'] = 'กรุณากรอกนามสกุล';
+            header("location: ../AddStudent.php");
+        } else if (empty($studygroup)) {
+            $_SESSION['error'] = 'กรุณากรอกหมู่เรียน';
             header("location: ../AddStudent.php");
         } else if (empty($email)) {
             $_SESSION['error'] = 'กรุณากรอกอีเมล';
@@ -40,7 +46,6 @@
             header("location: ../AddStudent.php");
         } else {
             try {
-
                 $check_email = $conn->prepare("SELECT email FROM studentuser WHERE email = :email");
                 $check_email->bindParam(":email", $email);
                 $check_email->execute();
@@ -49,16 +54,16 @@
                 if ($row['email'] == $email) {
                     $_SESSION['error'] = "มีอีเมลนี้อยู่ในระบบแล้ว";
                     header("location: ../AddStudent.php");
-                     exit();
-                    
-                    
+                    exit();
                 } else if (!isset($_SESSION['error'])) {
+                    // สร้างรหัสผ่านที่ถูกเข้ารหัสด้วย bcrypt
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt = $conn->prepare("INSERT INTO studentuser(studentID, firstname, lastname, email, password, urole) 
-                                            VALUES(:studentID, :firstname, :lastname, :email, :password, :urole)");
+                    $stmt = $conn->prepare("INSERT INTO studentuser(studentID, firstname, lastname, email,studygroup , password, urole) 
+                                            VALUES(:studentID, :firstname, :lastname, :email, :studygroup, :password, :urole)");
                     $stmt->bindParam(":studentID", $studentID);
                     $stmt->bindParam(":firstname", $firstname);
                     $stmt->bindParam(":lastname", $lastname);
+                    $stmt->bindParam(":studygroup", $studygroup);
                     $stmt->bindParam(":email", $email);
                     $stmt->bindParam(":password", $passwordHash);
                     $stmt->bindParam(":urole", $urole);
@@ -66,18 +71,15 @@
                     $_SESSION['success'] = "สมัครสมาชิกเรียบร้อยแล้ว!";
                     header("location: ../Student.php");
                     exit();
-                    
                 } else {
                     $_SESSION['error'] = "มีบางอย่างผิดพลาด";
                     header("location: ../Student.php");
                     exit();
                 }
-
             } catch(PDOException $e) {
                 echo $e->getMessage();
             }
         }
     }
-
-
 ?>
+

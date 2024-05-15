@@ -9,7 +9,7 @@ if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
 
     // ตรวจสอบก่อนว่ามีข้อมูลที่ต้องการลบหรือไม่
-    $checkstmt = $conn->prepare("SELECT * FROM podo WHERE id = :id");
+    $checkstmt = $conn->prepare("SELECT * FROM add_activity WHERE id = :id");
     $checkstmt->bindParam(':id', $delete_id);
     $checkstmt->execute();
     $rowCount = $checkstmt->rowCount();
@@ -41,7 +41,7 @@ if (isset($_GET['delete'])) {
 /* ---confirm delete--- */
 if (isset($_GET['confirm_delete'])) {
     $confirm_delete_id = $_GET['confirm_delete'];
-    $deletestmt = $conn->prepare("DELETE FROM podo WHERE id = :id");
+    $deletestmt = $conn->prepare("DELETE FROM add_activity WHERE id = :id");
     $deletestmt->bindParam(':id', $confirm_delete_id);
     $deletestmt->execute();
 
@@ -63,13 +63,15 @@ if (isset($_GET['confirm_delete'])) {
                 <th>ชื่อกิจกรรม</th>
                 <th>จำนวนชั่วโมงทั้งหมด</th>
                 <th>สถานที่</th>
-                <th>ผู้รับรองกิจกรรม</th>
+                <th>เริ่มต้น</th>
+                <th>สิ้นสุด</th>
+                <th>จำกัดจำนวน</th>
                 <th >ลบข้อมูล</th>
             </tr>
             <?php
             //คิวรี่ข้อมูลมาแสดงในตาราง
             require_once 'server.php';
-            $stmt = $conn->prepare("SELECT * FROM podo");
+            $stmt = $conn->prepare("SELECT * FROM add_activity");
             $stmt->execute();
             $result = $stmt->fetchAll();
             foreach ($result as $k) {
@@ -84,7 +86,20 @@ if (isset($_GET['confirm_delete'])) {
                     <td><?php echo $k['name_activity']; ?></td>
                     <td><?php echo $k['collect_hours']; ?></td>
                     <td><?php echo $k['name_location']; ?></td>
-                    <td><?php echo $k['user_certifier']; ?></td>
+                    <td><?php echo $k['activity_date1']; ?></td>
+                    <td><?php echo $k['activity_date2']; ?></td>
+                    <td>
+               <?php
+                        // นับจำนวนผู้เข้าร่วมกิจกรรมจากตาราง join_activity
+                        $stmt_count = $conn->prepare("SELECT COUNT(*) AS participant_count FROM join_activity WHERE name_activity = :name_activity");
+                        $stmt_count->bindParam(":name_activity", $k['name_activity']);
+                        $stmt_count->execute();
+                        $row_count = $stmt_count->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <?php echo $row_count['participant_count']; ?> / <?php echo $k['participant_limit']; ?>
+                    </td>
+               
+            
                     <td>
                     <a data-id="<?= $k['id']; ?>" href="?delete=<?= $k['id']; ?>" > <i class="fas fa-trash fa-lg"></i>
                     </a>

@@ -1,5 +1,22 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/2sweetalert@11"></script>
+<script>
+    $(document).ready(function() {
+        // เพิ่มการตรวจสอบการคลิกที่รูปภาพ
+        $('.rounded').click(function() {
+            var imgUrl = $(this).attr('src'); // รับ URL ของรูปภาพที่คลิก
+            var imgTag = '<img src="' + imgUrl + '" style="max-width: 100%; max-height: 100%;">'; // สร้างแท็ก <img> ใหม่โดยกำหนดขนาดสูงสุด
+            Swal.fire({
+                html: imgTag, // แทรกรูปภาพใน SweetAlert2
+                showCloseButton: true, // แสดงปุ่มปิด
+                showConfirmButton: false, // ซ่อนปุ่มยืนยัน
+                customClass: {
+                    popup: 'swal2-image-popup', // กำหนดคลาส CSS สำหรับการแสดงรูปภาพใน SweetAlert2
+                },
+            });
+        });
+    });
+</script>
 <?php 
      /* ---delete---  */ 
 
@@ -32,37 +49,38 @@
         <table class="custom-table">
         <tr>
             <th>ชื่อกิจกรรม</th>
-            <th>เพิ่มด้วยตนเอง</th>
-            <th>ผู้รับรอง</th>
             <th>รหัสนักศึกษา</th>
             <th>จำนวนชั่วโมง</th>
             <th>วันที่บันทึกมา</th>
             <th>รูปภาพ</th>
+            <th>รูปเอกสารรับรอง</th>
             <th>รายละเอียด</th>
-            <th>สถานนะ</th>
         </tr>
         <?php
-            //คิวรี่ข้อมูลมาแสดงในตาราง
-            require_once 'server.php';
-            $stmt = $conn->prepare("SELECT * FROM info_student");
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-            foreach($result as $k) {
-            ?>
+                // รหัสนักศึกษาที่เข้าระบบ
+                $loggedInStudentID = $_SESSION['studentID'];
 
-            <tr>
-            <td><?php echo $k['user_activity']; ?></td>
-            <td><?php echo $k['activity2']; ?></td>
-            <td><?php echo $k['user_certifier']; ?></td>
-            <td><?php echo $k['studentID']; ?></td>
-            <td><?php echo $k['collect_hours']; ?></td>
-            <td><?php echo $k['name_time']; ?></td>
-            <td width="150px" ><img class="rounded" width="100%"  src="../page/uploadsIMG/<?php echo $k['img']; ?>" alt=""></td>
-            <td><?php echo $k['name_message']; ?></td>
-            <td><?php echo $k['user_status']; ?></td>
+                // คิวรีข้อมูลจากตาราง info_student โดยใช้ INNER JOIN และเงื่อนไข WHERE เพื่อกรองเฉพาะข้อมูลของผู้ใช้ที่ studentID เท่ากับ studentID ที่เข้าระบบ
+                $stmt = $conn->prepare("SELECT info_student.*, studentuser.* FROM info_student INNER JOIN studentuser ON info_student.studentID = studentuser.studentID WHERE info_student.studentID = :loggedInStudentID");
+                $stmt->bindParam(':loggedInStudentID', $loggedInStudentID);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+
+                foreach ($result as $row) {
+                    ?>
+                    <tr>
+                        <td><?php echo $row['activity2']; ?></td>
+                        <td><?php echo $row['studentID']; ?></td>
+                        <td><?php echo $row['collect_hours']; ?></td>
+                        <td><?php echo $row['name_time']; ?></td>
+                        <td width="150px"><img class="rounded" width="100%" src="../page/uploadsIMG/<?php echo $row['img']; ?>" alt=""></td>
+                        <td width="150px"><img class="rounded" width="100%" src="../page/imgConfirm/<?php echo $row['img_confirm']; ?>" alt=""></td>
+                        <td><?php echo $row['name_message']; ?></td>
+                    </tr>
+                    <?php
+                }
+            ?>
             
-            </tr>
-            <?php } ?>
 
     </table>
     </div>

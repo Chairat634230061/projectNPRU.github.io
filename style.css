@@ -71,6 +71,21 @@ body {
     filter: alpha(opacity=40);
 
 }
+.table-container {
+    height: 420px; /* กำหนดความสูงของตาราง */
+    overflow: auto; /* เพิ่มการเลื่อนแถวและคอลัมน์ของตาราง */
+}
+.previewImg {
+    max-width: 100%; /* ปรับขนาดรูปภาพให้ไม่เกินขอบเขตของพื้นที่ที่แสดง */
+    height: auto; /* รักษาสัดส่วนของรูปภาพ */
+    cursor: pointer; /* เปลี่ยนเคอเซอร์เป็นรูปแบบของเมื่อคลิก */
+}
+
+.previewImg :hover {
+    max-width: none; /* ยกเลิกการจำกัดขนาดของรูปภาพ */
+    transition: max-width 0.5s ease; /* ให้มีการเปลี่ยนแปลงขนาดอย่างนุ่มนวล */
+}
+
 
 @media screen and (max-width: 768px) {
   

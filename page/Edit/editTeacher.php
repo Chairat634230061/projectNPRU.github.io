@@ -12,7 +12,7 @@ if (isset($_POST['update'])) {
         $number = $_POST['number'];
         $email = $_POST['email'];
 
-        $sql = $conn->prepare("UPDATE user SET firstname = :firstname, lastname = :lastname, number = :number, email = :email WHERE id = :id");
+        $sql = $conn->prepare("UPDATE user_admin SET firstname = :firstname, lastname = :lastname, number = :number, email = :email WHERE id = :id");
         $sql->bindParam(":id", $id);
         $sql->bindParam(":firstname", $firstname);
         $sql->bindParam(":lastname", $lastname);

@@ -23,7 +23,7 @@
         } else {
             try {
 
-                $check_data = $conn->prepare("SELECT * FROM user WHERE email = :email");
+                $check_data = $conn->prepare("SELECT * FROM user_admin WHERE email = :email");
                 $check_data->bindParam(":email", $email);
                 $check_data->execute();
                 $row = $check_data->fetch(PDO::FETCH_ASSOC);
