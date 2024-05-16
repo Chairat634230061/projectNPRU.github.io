@@ -48,9 +48,8 @@ $studentID = $_SESSION['studentID'];
 
     <?php include '../component/Navber.php'?>
     <?php include '../component/User/Sidebar.php'?>
-    <?php include '../component/User/table.php'?>
+    <?php include '../component/User/Table.php'?>
     <?php include '../component/Footer.php'?>
-
 
 
 
