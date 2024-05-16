@@ -36,7 +36,7 @@ $studentID = $_SESSION['studentID'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOIN</title>
+    <title>เข้าร่วมกิจกรรม</title>
     <link rel="stylesheet" href="page.css">
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

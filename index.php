@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>เลือกเพื่อเข้าสู่ระบบ</title>
     <link rel="stylesheet" href="style.css">
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
