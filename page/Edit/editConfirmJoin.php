@@ -30,12 +30,12 @@ if (isset($_POST['update'])) {
                     exit();
                 } else {
                     $_SESSION['error'] = "ไม่สามารถลบข้อมูลจาก join_activity ได้";
-                    header("location: ../ConfirmPage.php");
+                    header("location: ../AdminJoin.php");
                     exit();
                 }
             } else {
                 $_SESSION['error'] = "ไม่สามารถเพิ่มข้อมูลใน successful ได้";
-                header("location: ../ConfirmPage.php");
+                header("location: ../AdminJoin.php");
                 exit();
             }
         } elseif ($user_status == 'ไม่อนุมัติ') {
@@ -51,25 +51,25 @@ if (isset($_POST['update'])) {
                 $deleteSuccess = $deletestmt->execute();
 
                 if ($deleteSuccess) {
-                    header("location: ../ConfirmPage.php");
+                    header("location: ../AdminJoin.php");
                     exit();
                 } else {
                     $_SESSION['error'] = "ไม่สามารถลบข้อมูลจาก join_activity ได้";
-                    header("location: ../ConfirmPage.php");
+                    header("location: ../AdminJoin.php");
                     exit();
                 }
             } else {
                 $_SESSION['error'] = "ไม่สามารถเพิ่มข้อมูลใน unsuccessful ได้";
-                header("location: ../ConfirmPage.php");
+                header("location: ../AdminJoin.php");
                 exit();
             }
         } else {
-            header("location: ../ConfirmPage.php");
+            header("location: ../AdminJoin.php");
             exit();
         }
     } else {
         $_SESSION['error'] = "อัปเดตข้อมูลไม่สำเร็จ";
-        header("location: ../ConfirmPage.php");
+        header("location: ../AdminJoin.php");
         exit();
     }
 }

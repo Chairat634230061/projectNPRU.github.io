@@ -43,14 +43,14 @@ if (isset($_GET['delete'])) {
         echo '        cancelButtonText: "ปิด",';
         echo '    }).then((result) => {';
         echo '        if (result.isConfirmed) {';
-        echo '            window.location.href = "../page/UnConfirmPage.php?confirm_delete=' . $delete_id . '";';
+        echo '            window.location.href = "../page/UnConfirmPage2.php?confirm_delete=' . $delete_id . '";';
         echo '        }';
         echo '    });';
         echo '});';
         echo '</script>';
     } else {
         $_SESSION['error'] = "ไม่พบข้อมูลที่ต้องการลบ";
-        header("location: ../page/UnConfirmPage.php");
+        header("location: ../page/UnConfirmPage2.php");
         exit();
     }
 }
@@ -65,7 +65,7 @@ if (isset($_GET['confirm_delete'])) {
     if ($deletestmt) {
         $_SESSION['success'] = "ลบข้อมูลนี้เรียบร้อย";
         // เพิ่มคำสั่งรีเฟรชหน้าหลังลบข้อมูล
-        header("location: ../page/UnConfirmPage.php");
+        header("location: ../page/UnConfirmPage2.php");
         exit();
     }
 }
