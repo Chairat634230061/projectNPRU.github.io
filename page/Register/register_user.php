@@ -7,6 +7,7 @@
 
     if (isset($_POST['submituser'])) {
         $studentID = $_POST['studentID'];
+        $mr_ms = $_POST['mr_ms'];
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
@@ -18,6 +19,9 @@
         $urole = 'user' . $studentID;
 
         if (empty($firstname)) {
+            $_SESSION['error'] = 'กรุณากรอกชื่อ';
+            header("location: ../AddStudent.php");
+        } else if (empty($mr_ms)) {
             $_SESSION['error'] = 'กรุณากรอกชื่อ';
             header("location: ../AddStudent.php");
         } else if (empty($lastname)) {
@@ -58,9 +62,10 @@
                 } else if (!isset($_SESSION['error'])) {
                     // สร้างรหัสผ่านที่ถูกเข้ารหัสด้วย bcrypt
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt = $conn->prepare("INSERT INTO studentuser(studentID, firstname, lastname, email,studygroup , password, urole) 
-                                            VALUES(:studentID, :firstname, :lastname, :email, :studygroup, :password, :urole)");
+                    $stmt = $conn->prepare("INSERT INTO studentuser(mr_ms, studentID, firstname, lastname, email,studygroup , password, urole) 
+                                            VALUES(:mr_ms, :studentID, :firstname, :lastname, :email, :studygroup, :password, :urole)");
                     $stmt->bindParam(":studentID", $studentID);
+                    $stmt->bindParam(":mr_ms", $mr_ms);
                     $stmt->bindParam(":firstname", $firstname);
                     $stmt->bindParam(":lastname", $lastname);
                     $stmt->bindParam(":studygroup", $studygroup);

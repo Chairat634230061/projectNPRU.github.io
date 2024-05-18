@@ -60,6 +60,7 @@ if (isset($_GET['confirm_delete'])) {
         <table class="custom-table">
         <tr>
         <th>ลำดับ</th>
+        <th>คำนำหน้า</th>
         <th>ชื่อผู้ดูแล</th>
         <th>นามสกุลผู้ดูแล</th>
         <th>เบอร์ติดต่อ</th>
@@ -83,6 +84,7 @@ if (isset($_GET['confirm_delete'])) {
         </div>
         </td>
 
+        <td><?php echo $k['mr_ms']; ?></td>
         <td><?php echo $k['firstname']; ?></td>
         <td><?php echo $k['lastname']; ?></td>
         <td><?php echo $k['number']; ?></td>

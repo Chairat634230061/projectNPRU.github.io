@@ -76,16 +76,17 @@ if (isset($_GET['confirm_delete'])) {
 <div class="table-container">
         <table class="custom-table">
         <tr>
+            <th>คำนำหน้า</th>
             <th>ชื่อ</th>
             <th>นามสกุล</th>
             <th>รหัสนักศึกษา</th>
             <th>ชื่อกิจกรรม</th>
-                <th>ชั่วโมงทั้งหมด</th>
-                <th>เริ่มต้น</th>
-                <th>สิ้นสุด</th>
-                <th>สถานที่</th>
-                <th>รูปภาพ</th>
-                <th>อนุมัติข้อมูล</th>
+            <th>ชั่วโมงทั้งหมด</th>
+            <th>เริ่มต้น</th>
+            <th>สิ้นสุด</th>
+            <th>สถานที่</th>
+            <th>รูปภาพ</th>
+            <th>อนุมัติข้อมูล</th>
   
         </tr>
         <?php
@@ -98,6 +99,7 @@ if (isset($_GET['confirm_delete'])) {
             ?>
 
             <tr>
+                <td><?php echo $k['mr_ms']; ?></td>
                 <td><?php echo $k['firstname']; ?></td>
                 <td><?php echo $k['lastname']; ?></td>
                 <td><?php echo $k['studentID']; ?></td>

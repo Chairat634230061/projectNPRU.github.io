@@ -13,9 +13,10 @@ require_once "server.php";
             $activity_date1 = $_POST['activity_date1'];
             $activity_date2 = $_POST['activity_date2'];
             $name_location = $_POST['name_location'];
+            $mr_ms = $_POST['mr_ms'];
 
             // เพิ่มข้อมูลเข้าฐานข้อมูล join_activity
-            $stmt = $conn->prepare("INSERT INTO join_activity (name_activity, firstname, lastname, studentID, activity_date1, activity_date2, name_location) VALUES (:name_activity, :firstname, :lastname, :studentID, :activity_date1, :activity_date2, :name_location)");
+            $stmt = $conn->prepare("INSERT INTO join_activity (name_activity, firstname, lastname, studentID, activity_date1, activity_date2, name_location, mr_ms) VALUES (:name_activity, :firstname, :lastname, :studentID, :activity_date1, :activity_date2, :name_location, :mr_ms)");
             $stmt->bindParam(":name_activity", $name_activity);
             $stmt->bindParam(":firstname", $firstname);
             $stmt->bindParam(":lastname", $lastname);
@@ -23,6 +24,7 @@ require_once "server.php";
             $stmt->bindParam(":activity_date1", $activity_date1);
             $stmt->bindParam(":activity_date2", $activity_date2);
             $stmt->bindParam(":name_location", $name_location);
+            $stmt->bindParam(":mr_ms", $mr_ms);
             // ทำการ execute คำสั่ง SQL
             if ($stmt->execute()) {
                 $_SESSION['success'] = "เข้าร่วมสำเร็จ";

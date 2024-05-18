@@ -77,7 +77,7 @@ if (isset($_GET['confirm_delete'])) {
         <table class="custom-table">
         <tr>
             <th>ชื่อกิจกรรม</th>
-            <th>รหัสนักศึกษา</th>
+            <th>สถานที่</th>
             <th>จำนวนชั่วโมง</th>
             <th>วันที่บันทึกมา</th>
             <th>รูปภาพ</th>
@@ -108,7 +108,7 @@ if (isset($_GET['confirm_delete'])) {
 
             <tr>
             <td><?php echo $row['activity2']; ?></td>
-            <td><?php echo $row['studentID']; ?></td>
+            <td><?php echo $row['name_location']; ?></td>
             <td><?php echo $row['collect_hours']; ?></td>
             <td><?php echo $row['name_time']; ?></td>
             <td width="150px" ><img class="rounded" width="100%"  src="../page/uploadsIMG/<?php echo $row['img']; ?>" alt=""></td>

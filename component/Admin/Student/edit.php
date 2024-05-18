@@ -14,58 +14,71 @@
        ?>
         <div class="Re-Data-laber">
             <label for="id" class="">ลำดับ</label>
-            </div>
+        </div>
         <div class="Re-Data">
             <input type="text" readonly value="<?php echo $k['id']; ?>" class="npru-input" name="id" required>
         </div>
 
         <div class="Re-Data-laber">
-          <label for="studentID" class="">รหัสนักศึกษา</label>
+            <label for="studentID" class="">รหัสนักศึกษา</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['studentID']; ?>" name="studentID" required>
-          </div>
+        </div>
+
         <div class="Re-Data-laber">
-          <label for="firstname" class="">ชื่อนักศึกษา</label>
+            <label for="mr_ms" class="">คำนำหน้า</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" value="<?php echo $k['mr_ms']; ?>" name="mr_ms" required>
+        </div>
+
+        <div class="Re-Data-laber">
+            <label for="firstname" class="">ชื่อนักศึกษา</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['firstname']; ?>" name="firstname" required>
-          </div>
+        </div>
+
         <div class="Re-Data-laber">
-          <label for="lastname" class="">นามสกุลนักศึกษา</label>
+            <label for="lastname" class="">นามสกุลนักศึกษา</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['lastname']; ?>" name="lastname" required>
-          </div>
+        </div>
+
         <div class="Re-Data-laber">
-          <label for="lastname" class="">หมู่เรียน</label>
+            <label for="studygroup" class="">หมู่เรียน</label>
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['studygroup']; ?>" name="studygroup" required>
-          </div>
+        </div>
 
-          <div class="Re-Data-laber">
+        <div class="Re-Data-laber">
             <label for="email" class="">Email</label>
-          </div>
-          <div class="Re-Data">
+        </div>
+        <div class="Re-Data">
             <input type="text" class="npru-input" value="<?php echo $k['email']; ?>" name="email" required>
-          </div>
-          <div class="Re-Data-laber">
-            <label for="password" class="">รหัสผ่าน</label>
-          </div>
-          <div class="Re-Data">
-            <input type="password" class="npru-input" name="password" required>
-          </div>
-          <div class="Re-Data-laber">
-            <label for="c_password" class="">ยืนยันรหัสผ่าน</label>
-          </div>
-          <div class="Re-Data">
-            <input type="password" class="npru-input" name="c_password" required>
-          </div>
+        </div>
 
-          <div class="Re-Data">
-        <button type="submit" name="update" class="npru-button">อัพเดทข้อมูล</button>
-    </div>
-        </form>
+        <div class="Re-Data-laber">
+            <label for="password" class="">รหัสผ่าน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="password" class="npru-input" name="password" required>
+        </div>
+
+        <div class="Re-Data-laber">
+            <label for="c_password" class="">ยืนยันรหัสผ่าน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="password" class="npru-input" name="c_password" required>
+        </div>
+
+        <div class="Re-Data">
+            <button type="submit" name="update" class="npru-button">อัพเดทข้อมูล</button>
+        </div>
+
+    </form>
         
 </div>

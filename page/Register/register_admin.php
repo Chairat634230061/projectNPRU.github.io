@@ -8,6 +8,7 @@ require_once("server.php");
 if (isset($_POST['signupadmin'])) {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
+    $mr_ms = $_POST['mr_ms'];
     $number = $_POST['number'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -67,9 +68,10 @@ if (isset($_POST['signupadmin'])) {
             // สร้างรหัสผ่านที่ถูกเข้ารหัสด้วย bcrypt
             //การเข้ารหัส รหัสผ่านเป็นกระบวนการที่จะแปลงข้อมูลรหัสผ่านที่ผู้ใช้ป้อนเป็นสตริงรหัสที่ไม่สามารถถอดรหัสกลับมาเป็นรหัสผ่านเดิมได้. นี่เป็นวิธีที่ช่วยให้รหัสผ่านเก็บไว้อย่างปลอดภัยในฐานข้อมูลหรือระบบอื่น ๆ โดยไม่ต้องเก็บเป็นรหัสผ่านแบบเปิดเผย.
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("INSERT INTO user_admin(number, firstname, lastname, email, password, urole) 
-                                        VALUES(:number, :firstname, :lastname, :email, :password, :urole)");
+            $stmt = $conn->prepare("INSERT INTO user_admin(number, mr_ms, firstname, lastname, email, password, urole) 
+                                        VALUES(:number, :mr_ms, :firstname, :lastname, :email, :password, :urole)");
             $stmt->bindParam(":number", $number);
+            $stmt->bindParam(":mr_ms", $mr_ms);
             $stmt->bindParam(":firstname", $firstname);
             $stmt->bindParam(":lastname", $lastname);
             $stmt->bindParam(":email", $email);

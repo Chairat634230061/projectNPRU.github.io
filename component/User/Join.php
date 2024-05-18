@@ -36,6 +36,12 @@
             <input type="text" readonly value="<?= isset($name_location) ? $name_location : ''; ?>" class="npru-input" name="name_location" required>
         </div>
         <div class="Re-Data-laber">
+            <label for="mr_ms" class="">คำนำหน้า</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="mr_ms" value="<?= isset($user['mr_ms']) ? $user['mr_ms'] : ''; ?>" required readonly>
+        </div>
+        <div class="Re-Data-laber">
             <label for="firstname" class="">ชื่อ</label>
         </div>
         <div class="Re-Data">

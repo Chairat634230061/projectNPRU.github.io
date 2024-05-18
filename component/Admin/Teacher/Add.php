@@ -4,6 +4,12 @@
     <form action ="../page/Register/register_admin.php" method="post" >
 
         <div class="Re-Data-laber">
+          <label for="mr_ms" class="">คำนำหน้า</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="mr_ms" required>
+          </div>
+        <div class="Re-Data-laber">
           <label for="firstname" class="">ชื่อผู้ดูแล</label>
         </div>
         <div class="Re-Data">

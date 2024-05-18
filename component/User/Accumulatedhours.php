@@ -21,7 +21,7 @@ if (isset($_SESSION['user_login'])) {
 ?>
 <div class="content">
     <div class="Add">
-        <p>ชั่วโมงสะสมผู้กู้กยศ. : <?php echo $user['firstname'] . ' ' . $user['lastname'] . ' ' . $user['studentID'] ?></p>
+    <p>ชั่วโมงสะสมผู้กู้กยศ. : <?php echo $user['mr_ms'] . ' ' . $user['firstname'] . ' ' . $user['lastname'] . ' ' . $user['studentID'] ?></p>
     </div>
     <div class="table-container">
         <table class="custom-table">

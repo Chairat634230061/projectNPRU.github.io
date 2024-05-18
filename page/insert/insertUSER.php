@@ -4,6 +4,7 @@ require_once "server.php";
 
 if (isset($_POST['submituser'])) {
     $activity2 = $_POST['activity2'];
+    $mr_ms = $_POST['mr_ms'];
     $studentID = $_POST['studentID'];
     $collect_hours = $_POST['collect_hours'];
     $name_message = $_POST['name_message'];
@@ -11,6 +12,7 @@ if (isset($_POST['submituser'])) {
     $lastname = $_POST['lastname'];
     $activity_date1 = $_POST['activity_date1'];
     $activity_date2 = $_POST['activity_date2'];
+    $name_location = $_POST['name_location'];
 
     // ตรวจสอบว่ารหัสนักศึกษามีอยู่ในฐานข้อมูลหรือไม่
     $stmt = $conn->prepare("SELECT * FROM studentuser WHERE studentID = :studentID");
@@ -42,10 +44,11 @@ if (isset($_POST['submituser'])) {
             if (in_array($fileActExt_img, $allow) && in_array($fileActExt_img_confirm, $allow)) {
                 if (move_uploaded_file($img['tmp_name'], $filePath_img) && move_uploaded_file($img_confirm['tmp_name'], $filePath_img_confirm)) {
                     // เพิ่มข้อมูลลงในฐานข้อมูล
-                    $sql = $conn->prepare("INSERT INTO info_student( studentID, collect_hours, img, name_message, activity2, firstname, lastname, img_confirm, activity_date1, activity_date2 ) 
-                    VALUES( :studentID, :collect_hours, :img, :name_message, :activity2, :firstname, :lastname, :img_confirm, :activity_date1, :activity_date2 )");
+                    $sql = $conn->prepare("INSERT INTO info_student( studentID, collect_hours, img, name_message, activity2, firstname, lastname, img_confirm, activity_date1, activity_date2, mr_ms, name_location ) 
+                    VALUES( :studentID, :collect_hours, :img, :name_message, :activity2, :firstname, :lastname, :img_confirm, :activity_date1, :activity_date2, :mr_ms, :name_location )");
                     $sql->bindParam(":studentID", $studentID);
                     $sql->bindParam(":collect_hours", $collect_hours);
+                    $sql->bindParam(":mr_ms", $mr_ms);
                     $sql->bindParam(":img", $fileNew_img);
                     $sql->bindParam(":name_message", $name_message);
                     $sql->bindParam(":activity2", $activity2);
@@ -54,6 +57,7 @@ if (isset($_POST['submituser'])) {
                     $sql->bindParam(":activity_date1", $activity_date1);
                     $sql->bindParam(":activity_date2", $activity_date2);
                     $sql->bindParam(":img_confirm", $fileNew_img_confirm);
+                    $sql->bindParam(":name_location", $name_location);
 
                     $sql->execute();
 
