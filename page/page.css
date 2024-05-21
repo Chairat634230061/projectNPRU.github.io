@@ -355,6 +355,16 @@ select {
     margin: 20px auto; /* กำหนดระยะห่างของกล่องรูปภาพจากด้านบนและด้านล่าง และจากด้านซ้ายและด้านขวา */
 }
 
+.form-group-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 10px; /* เพิ่มระยะห่างระหว่างฟอร์ม */
+}
 
   @media screen and (max-width: 768px) {
     .content {

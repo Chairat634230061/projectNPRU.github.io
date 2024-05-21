@@ -72,7 +72,9 @@ if (isset($_GET['confirm_delete'])) {
 ?>
 
 <div class="content">
-<?php include '../component/Admin/Confirm/Haeder.php'?>
+<div class="Add">
+    <p>ผู้เข้าร่วมกิจกรรมทั้งหมด</p>
+</div>
 <div class="table-container">
         <table class="custom-table">
         <tr>

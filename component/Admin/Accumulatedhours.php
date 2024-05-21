@@ -7,19 +7,20 @@
         <p>ชั่วโมงสะสม ผู้กู้กยศ.</p>
     </div>
     <form action="" method="GET">
-        <div class="form-group">
+    <div class="form-group-wrapper">
+        <form action="" method="GET" class="form-group">
             <label for="studentID">รหัสนักศึกษา:</label>
             <input type="text" class="form-control" id="studentID" name="studentID" placeholder="กรอกรหัสนักศึกษา">
             <button type="submit" class="hoursbutton">ตรวจสอบ</button>
-        </div>
-    </form>
-    <form action="" method="GET">
-        <div class="form-group">
+        </form>
+        <form action="" method="GET" class="form-group">
             <label for="studygroup">หมู่เรียน:</label>
             <input type="text" class="form-control" id="studygroup" name="studygroup" placeholder="กรอกหมู่เรียน">
             <button type="submit" class="hoursbutton">ตรวจสอบ</button>
-        </div>
-    </form>
+        </form>
+    </div>
+
+
     <div class="containerID">
         <?php
         require_once 'server.php';
