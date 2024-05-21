@@ -15,7 +15,7 @@ if (isset($_POST['update'])) {
         $_SESSION['success'] = "อัปเดตข้อมูลเรียบร้อย";
         if ($user_status == 'อนุมัติ') {
             // เพิ่มข้อมูลลงใน successful ก่อน
-            $insertstmt = $conn->prepare("INSERT INTO successful (user_activity, studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location,  id) SELECT user_activity, studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location, id FROM info_student WHERE id = :id");
+            $insertstmt = $conn->prepare("INSERT INTO successful (studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location,  id) SELECT studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location, id FROM info_student WHERE id = :id");
             $insertstmt->bindParam(':id', $id);
             $insertstmt->execute();
 
@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
             }
         } elseif ($user_status == 'ไม่อนุมัติ') {
             // เพิ่มข้อมูลลงใน unsuccessful ก่อน
-            $insertstmt = $conn->prepare("INSERT INTO unsuccessful (user_activity, studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location, id) SELECT user_activity, studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location, id FROM info_student WHERE id = :id");
+            $insertstmt = $conn->prepare("INSERT INTO unsuccessful (studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location,  id) SELECT studentID, collect_hours, name_time, img, name_message, user_status, firstname, lastname, activity2, img_confirm, mr_ms, name_location, id FROM info_student WHERE id = :id");
             $insertstmt->bindParam(':id', $id);
             $insertstmt->execute();
 

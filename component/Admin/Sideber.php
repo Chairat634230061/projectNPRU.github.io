@@ -8,6 +8,7 @@
     <li><a href="AdminJoin.php">ยืนยันกิจกรรมทาง กยศ</a></li>
     <li><a href="Successful2.php">อนุมัติแล้ว</a></li>
     <li><a href="UnConfirmPage2.php">ไม่อนุมัติ</a></li>
+    <hr>
     <li><a href="ConfirmPage.php">กิจกรรมผู้กู้เพิ่ม</a></li>
     <li><a href="Successful.php">อนุมัติกิจกรรมผู้กู้</a></li>
     <li><a href="UnConfirmPage.php">ไม่อนุมัติกิจกรรมผู้กู้</a></li>

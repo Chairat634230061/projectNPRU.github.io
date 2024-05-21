@@ -26,7 +26,7 @@ if (isset($_POST['update'])) {
                 $deleteSuccess = $deletestmt->execute();
 
                 if ($deleteSuccess) {
-                    header("location: ../ConfirmPage.php");
+                    header("location: ../AdminJoin.php");
                     exit();
                 } else {
                     $_SESSION['error'] = "ไม่สามารถลบข้อมูลจาก join_activity ได้";
