@@ -35,11 +35,13 @@ if (isset($_POST['update'])) {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // ทำการอัปเดตฐานข้อมูล
-    $sql = $conn->prepare("UPDATE join_activity SET img = :img, collect_hours = :collect_hours WHERE name_activity = :name_activity");
+    $sql = $conn->prepare("UPDATE join_activity SET img = :img, collect_hours = :collect_hours WHERE name_activity = :name_activity AND studentID = :studentID");
     $sql->bindParam(":name_activity", $name_activity);
     $sql->bindParam(":collect_hours", $collect_hours);
     $sql->bindParam(":img", $fileNew_img); // ใช้ชื่อไฟล์ภาพที่อัปโหลด
+    $sql->bindParam(":studentID", $_POST['studentID']); // เชื่อมรหัสนักศึกษาเข้ากับการอัปเดต
     $result = $sql->execute();
+
 
     if ($result) {
         $_SESSION['success'] = "อัพเดทข้อมูลเรียบร้อย";

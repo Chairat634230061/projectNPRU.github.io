@@ -35,6 +35,12 @@
             <input type="text" readonly value="<?php echo $k['name_activity']; ?>" class="npru-input" name="name_activity" required>
         </div>
         <div class="Re-Data-laber">
+        <label for="studentID" class="">รหัสนักศึกษา</label>
+    </div>
+    <div class="Re-Data">
+        <input type="text" readonly value="<?php echo $k['studentID']; ?>" class="npru-input" name="studentID" required>
+    </div>
+        <div class="Re-Data-laber">
             <label for="collect_hours" class="">ชั่วโมง</label>
         </div>
         <div class="Re-Data">
