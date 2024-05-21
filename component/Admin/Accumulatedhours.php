@@ -13,16 +13,27 @@
             <button type="submit" class="hoursbutton">ตรวจสอบ</button>
         </div>
     </form>
+    <form action="" method="GET">
+        <div class="form-group">
+            <label for="studygroup">หมู่เรียน:</label>
+            <input type="text" class="form-control" id="studygroup" name="studygroup" placeholder="กรอกหมู่เรียน">
+            <button type="submit" class="hoursbutton">ตรวจสอบ</button>
+        </div>
+    </form>
     <div class="containerID">
         <?php
         require_once 'server.php';
 
         if (isset($_GET['studentID'])) {
             $student_id = $_GET['studentID'];
-            $stmt = $conn->prepare("SELECT mr_ms, firstname, lastname, GROUP_CONCAT(name_activity SEPARATOR ' ') AS activities, GROUP_CONCAT(activity2 SEPARATOR ' ') AS added_activities, studentID, SUM(collect_hours) AS total_hours FROM successful WHERE studentID = :student_id GROUP BY mr_ms, firstname, lastname, studentID");
+            $stmt = $conn->prepare("SELECT mr_ms, firstname, lastname, studygroup, GROUP_CONCAT(name_activity SEPARATOR ' ') AS activities, GROUP_CONCAT(activity2 SEPARATOR ' ') AS added_activities, studentID, SUM(collect_hours) AS total_hours FROM successful WHERE studentID = :student_id GROUP BY mr_ms, firstname, lastname, studygroup, studentID");
             $stmt->bindParam(':student_id', $student_id);
+        } elseif (isset($_GET['studygroup'])) {
+            $studygroup = $_GET['studygroup'];
+            $stmt = $conn->prepare("SELECT mr_ms, firstname, lastname, studygroup, GROUP_CONCAT(name_activity SEPARATOR ' ') AS activities, GROUP_CONCAT(activity2 SEPARATOR ' ') AS added_activities, studentID, SUM(collect_hours) AS total_hours FROM successful WHERE studygroup = :studygroup GROUP BY mr_ms, firstname, lastname, studygroup, studentID");
+            $stmt->bindParam(':studygroup', $studygroup);
         } else {
-            $stmt = $conn->prepare("SELECT mr_ms, firstname, lastname, GROUP_CONCAT(name_activity SEPARATOR ' ') AS activities, GROUP_CONCAT(activity2 SEPARATOR ' ') AS added_activities, studentID, SUM(collect_hours) AS total_hours FROM successful GROUP BY mr_ms, firstname, lastname, studentID");
+            $stmt = $conn->prepare("SELECT mr_ms, firstname, lastname, studygroup, GROUP_CONCAT(name_activity SEPARATOR ' ') AS activities, GROUP_CONCAT(activity2 SEPARATOR ' ') AS added_activities, studentID, SUM(collect_hours) AS total_hours FROM successful GROUP BY mr_ms, firstname, lastname, studygroup, studentID");
         }
         
         $stmt->execute();
@@ -36,10 +47,12 @@
             echo "<th>คำนำหน้า</th>";
             echo "<th>ชื่อ</th>";
             echo "<th>นามสกุล</th>";
+            echo "<th>หมู่เรียน</th>";
             echo "<th>กิจกรรมทั้งหมด</th>";
             echo "<th>เพิ่มด้วยตนเอง</th>";
             echo "<th>รหัสนักศึกษา</th>";
             echo "<th>จำนวนชั่วโมง</th>";
+            echo "<th>ผลการตรวจสอบ</th>"; // เพิ่มช่องเก็บผลการตรวจสอบ
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
@@ -49,10 +62,21 @@
                 echo "<td>" . $activity['mr_ms'] . "</td>";
                 echo "<td>" . $activity['firstname'] . "</td>";
                 echo "<td>" . $activity['lastname'] . "</td>";
+                echo "<td>" . $activity['studygroup'] . "</td>";
                 echo "<td>" . $activity['activities'] . "</td>";
                 echo "<td>" . $activity['added_activities'] . "</td>";
                 echo "<td>" . $activity['studentID'] . "</td>";
                 echo "<td>" . $activity['total_hours'] . "</td>";
+                
+                // เพิ่มโค้ด JavaScript เพื่อตรวจสอบจำนวนชั่วโมงสะสมและแสดงผล
+                echo "<td>";
+                if ($activity['total_hours'] >= 36) {
+                    echo "ผ่าน";
+                } else {
+                    echo "ไม่ผ่าน";
+                }
+                echo "</td>";
+                
                 echo "</tr>";
             }
             echo "</tbody>";

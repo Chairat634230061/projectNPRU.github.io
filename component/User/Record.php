@@ -2,16 +2,26 @@
     <p class="record-p">เพิ่มข้อมูล</p>
     <?php 
         require_once 'server.php';
-
-        // ตรวจสอบว่าตัวแปร $user ถูกกำหนดค่าหรือไม่
-        if (isset($_SESSION['user_login'])) {
-            // ใช้ user_login เพื่อค้นหาข้อมูลผู้ใช้ในฐานข้อมูล
+         // ตรวจสอบการล็อกอินของผู้ใช้
+         if (isset($_SESSION['user_login'])) {
             $userId = $_SESSION['user_login'];
             $stmt = $conn->prepare("SELECT * FROM studentuser WHERE id = :userId");
             $stmt->bindParam(":userId", $userId);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // ตรวจสอบว่าข้อมูลถูกดึงมาได้หรือไม่
+            if ($user) {
+                $studygroup = $user['studygroup']; // ดึงค่า studygroup จากผลลัพธ์ที่ได้
+            } else {
+                echo "ไม่พบข้อมูลผู้ใช้";
+                exit();
+            }
+        } else {
+            echo "กรุณาเข้าสู่ระบบ";
+            exit();
         }
+
     ?>
     <form action="../page/insert/insertUSER.php" method="post" enctype="multipart/form-data">
         <div class="Re-Data-laber">
@@ -47,6 +57,13 @@
         </div>
         <div class="Re-Data">
             <input type="text" class="npru-input" name="studentID" value="<?php echo $_SESSION['studentID']; ?>" required readonly>
+        </div>
+
+        <div class="Re-Data-laber">
+            <label for="studygroup" class="">หมู่เรียน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="studygroup" value="<?php echo $user['studygroup']; ?>" required readonly>
         </div>
 
         <div class="Re-Data-laber">

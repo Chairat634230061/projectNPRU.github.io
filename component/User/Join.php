@@ -59,6 +59,14 @@
         <div class="Re-Data">
             <input type="text" class="npru-input" name="studentID" value="<?= isset($_SESSION['studentID']) ? $_SESSION['studentID'] : ''; ?>" required readonly>
         </div>
+
+        <div class="Re-Data-laber">
+            <label for="studygroup" class="">หมู่เรียน</label>
+        </div>
+        <div class="Re-Data">
+            <input type="text" class="npru-input" name="studygroup" value="<?= isset($_SESSION['studygroup']) ? $_SESSION['studygroup'] : ''; ?>" required readonly>
+        </div>
+
         <div class="Re-Data-laber">
             <label for="activity_date1" class="">เริ่มต้น</label>
         </div>

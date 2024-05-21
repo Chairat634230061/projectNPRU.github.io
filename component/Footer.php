@@ -15,7 +15,7 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // แสดงชื่อและรหัสนักศึกษาของผู้ใช้ที่ล็อกอินแล้ว
-            echo $user['mr_ms'] . ' ' . $user['firstname'] . ' ' . $user['lastname'] . ' ' . $user['studentID'];
+            echo $user['mr_ms'] . ' ' . $user['firstname'] . ' ' . $user['lastname'] . ' ' . $user['studentID'] . ' ' . $user['studygroup'];
         }
         ?>
     </div>

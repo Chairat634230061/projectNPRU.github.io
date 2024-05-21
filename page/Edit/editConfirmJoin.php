@@ -15,7 +15,7 @@ if (isset($_POST['update'])) {
         $_SESSION['success'] = "อัปเดตข้อมูลเรียบร้อย";
         if ($user_status == 'อนุมัติ') {
             // เพิ่มข้อมูลลงใน successful ก่อน
-            $insertstmt = $conn->prepare("INSERT INTO successful (name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, id) SELECT name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, id FROM join_activity WHERE id = :id");
+            $insertstmt = $conn->prepare("INSERT INTO successful (name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, studygroup, id) SELECT name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, studygroup, id FROM join_activity WHERE id = :id");
             $insertstmt->bindParam(':id', $id);
             $insertstmt->execute();
 
@@ -40,7 +40,7 @@ if (isset($_POST['update'])) {
             }
         } elseif ($user_status == 'ไม่อนุมัติ') {
             // เพิ่มข้อมูลลงใน unsuccessful ก่อน
-            $insertstmt = $conn->prepare("INSERT INTO unsuccessful (name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, id) SELECT name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, id FROM join_activity WHERE id = :id");
+            $insertstmt = $conn->prepare("INSERT INTO unsuccessful (name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, studygroup, id) SELECT name_activity, studentID, collect_hours, img, user_status, firstname, lastname, mr_ms, studygroup, id FROM join_activity WHERE id = :id");
             $insertstmt->bindParam(':id', $id);
             $insertstmt->execute();
 

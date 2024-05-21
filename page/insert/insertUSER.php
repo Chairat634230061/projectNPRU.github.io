@@ -13,6 +13,7 @@ if (isset($_POST['submituser'])) {
     $activity_date1 = $_POST['activity_date1'];
     $activity_date2 = $_POST['activity_date2'];
     $name_location = $_POST['name_location'];
+    $studygroup = $_POST['studygroup'];
 
     // ตรวจสอบว่ารหัสนักศึกษามีอยู่ในฐานข้อมูลหรือไม่
     $stmt = $conn->prepare("SELECT * FROM studentuser WHERE studentID = :studentID");
@@ -44,8 +45,8 @@ if (isset($_POST['submituser'])) {
             if (in_array($fileActExt_img, $allow) && in_array($fileActExt_img_confirm, $allow)) {
                 if (move_uploaded_file($img['tmp_name'], $filePath_img) && move_uploaded_file($img_confirm['tmp_name'], $filePath_img_confirm)) {
                     // เพิ่มข้อมูลลงในฐานข้อมูล
-                    $sql = $conn->prepare("INSERT INTO info_student( studentID, collect_hours, img, name_message, activity2, firstname, lastname, img_confirm, activity_date1, activity_date2, mr_ms, name_location ) 
-                    VALUES( :studentID, :collect_hours, :img, :name_message, :activity2, :firstname, :lastname, :img_confirm, :activity_date1, :activity_date2, :mr_ms, :name_location )");
+                    $sql = $conn->prepare("INSERT INTO info_student( studentID, collect_hours, img, name_message, activity2, firstname, lastname, img_confirm, activity_date1, activity_date2, mr_ms, name_location, studygroup ) 
+                    VALUES( :studentID, :collect_hours, :img, :name_message, :activity2, :firstname, :lastname, :img_confirm, :activity_date1, :activity_date2, :mr_ms, :name_location, :studygroup )");
                     $sql->bindParam(":studentID", $studentID);
                     $sql->bindParam(":collect_hours", $collect_hours);
                     $sql->bindParam(":mr_ms", $mr_ms);
@@ -58,6 +59,7 @@ if (isset($_POST['submituser'])) {
                     $sql->bindParam(":activity_date2", $activity_date2);
                     $sql->bindParam(":img_confirm", $fileNew_img_confirm);
                     $sql->bindParam(":name_location", $name_location);
+                    $sql->bindParam(":studygroup", $studygroup);
 
                     $sql->execute();
 
